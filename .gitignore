@@ -1,0 +1,23 @@
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Node (se usar futuramente)
+node_modules/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+
+# Arquivos temporarios
+*.tmp
+
+# Arquivos de ambiente (caso use depois)
+.env
+
+# Cache
+.cache/
+dist/
+build/

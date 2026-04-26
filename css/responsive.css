@@ -1,0 +1,344 @@
+/* ============================= */
+/* DESKTOP MENOR / NOTEBOOKS */
+/* Ajusta espacamentos antes de chegar no tablet */
+/* ============================= */
+@media (max-width: 1100px) {
+
+  .home,
+  .about,
+  .projects,
+  .skills,
+  .certificates {
+    width: 92%;
+  }
+
+  .home {
+    gap: 36px;
+  }
+
+  .about {
+    gap: 42px;
+  }
+
+  .home-text h1 {
+    font-size: 2.8rem;
+  }
+
+  .about-text h2 {
+    font-size: 1.85rem;
+  }
+
+}
+
+/* ============================= */
+/* TABLET */
+/* Empilha as secoes principais e centraliza textos */
+/* ============================= */
+@media (max-width: 900px) {
+
+  .navbar {
+    width: 92%;
+  }
+
+  .navbar ul {
+    gap: 4px;
+  }
+
+  .navbar a {
+    font-size: 0.88rem;
+    padding: 8px 7px;
+  }
+
+  .home {
+    flex-direction: column;
+    min-height: auto;
+    margin-top: 34px;
+    text-align: center;
+  }
+
+  .home-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-tags,
+  .buttons {
+    justify-content: center;
+  }
+
+  .hero-card {
+    width: 320px;
+    height: 320px;
+  }
+
+  .dev-symbol-3d {
+    width: 255px;
+    height: 255px;
+  }
+
+  .code-mark {
+    width: 190px;
+    height: 148px;
+  }
+
+  .code-mark span {
+    font-size: 4.35rem;
+  }
+
+  .about {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-text p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-highlights {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .projects-wrapper,
+  .certificates-wrapper {
+    padding: 15px 50px 25px;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+}
+
+/* ============================= */
+/* TABLET PEQUENO / CELULAR GRANDE */
+/* Reduz carrosseis para caber melhor com as setas */
+/* ============================= */
+@media (max-width: 700px) {
+
+  section {
+    scroll-margin-top: 190px;
+  }
+
+  .projects-wrapper,
+  .certificates-wrapper {
+    padding: 12px 44px 22px;
+  }
+
+  .projects-viewport,
+  .certificates-viewport {
+    padding: 24px 14px 30px;
+    border-radius: 28px;
+  }
+
+  .project-card,
+  .certificate-card {
+    min-width: 255px;
+    max-width: 255px;
+    flex: 0 0 255px;
+  }
+
+  .arrow {
+    width: 40px;
+    height: 40px;
+  }
+
+  .arrow img {
+    width: 17px;
+    height: 17px;
+  }
+
+}
+
+/* ============================= */
+/* MOBILE */
+/* Prioriza leitura, toque e empilhamento em uma coluna */
+/* ============================= */
+@media (max-width: 600px) {
+
+  .navbar {
+    flex-direction: column;
+    gap: 10px;
+    padding: 14px;
+    border-radius: 26px;
+  }
+
+  .navbar ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 6px;
+  }
+
+  .logo {
+    font-size: 1.35rem;
+  }
+
+  .home {
+    gap: 32px;
+    margin-bottom: 70px;
+  }
+
+  .home-text h1 {
+    font-size: 2rem;
+    letter-spacing: 0;
+  }
+
+  .home-text h3 {
+    font-size: 1.05rem;
+  }
+
+  .home-text p {
+    font-size: 0.95rem;
+  }
+
+  .hero-card {
+    width: 265px;
+    height: 265px;
+  }
+
+  .dev-symbol-3d {
+    width: 215px;
+    height: 215px;
+  }
+
+  .code-mark {
+    width: 158px;
+    height: 124px;
+    border-radius: 26px;
+  }
+
+  .code-mark span {
+    font-size: 3.45rem;
+  }
+
+  .about {
+    margin: 70px auto;
+    gap: 36px;
+  }
+
+  .about-photo-card {
+    width: 230px;
+    height: 285px;
+  }
+
+  .about-photo-card img {
+    border-radius: 22px;
+  }
+
+  .about-text h2,
+  .projects h2,
+  .skills h2,
+  .certificates h2,
+  .contact h2 {
+    font-size: 1.65rem;
+  }
+
+  .about-highlights,
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .projects {
+    margin-bottom: 80px;
+  }
+
+  .projects-wrapper,
+  .certificates-wrapper {
+    padding: 12px 40px 22px;
+  }
+
+  .project-card,
+  .certificate-card {
+    min-width: 245px;
+    max-width: 245px;
+    flex: 0 0 245px;
+  }
+
+  .project-card img {
+    height: 170px;
+  }
+
+  .certificate-card-link {
+    margin-top: 4px;
+  }
+
+  .certificates {
+    margin: 80px auto;
+  }
+
+  .certificates-header {
+    margin-bottom: 24px;
+  }
+
+  .contact {
+    margin-top: 80px;
+    padding: 44px 20px;
+    border-radius: 24px;
+  }
+
+  .contact-links {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contact-item {
+    justify-content: center;
+  }
+
+}
+
+/* ============================= */
+/* MOBILE ESTREITO */
+/* Ultimos ajustes para telas pequenas */
+/* ============================= */
+@media (max-width: 380px) {
+
+  .navbar a {
+    font-size: 0.82rem;
+    padding: 7px 6px;
+  }
+
+  .home-text h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-card {
+    width: 230px;
+    height: 230px;
+  }
+
+  .dev-symbol-3d {
+    width: 190px;
+    height: 190px;
+  }
+
+  .code-mark {
+    width: 138px;
+    height: 108px;
+  }
+
+  .code-mark span {
+    font-size: 3rem;
+  }
+
+  .projects-wrapper,
+  .certificates-wrapper {
+    padding: 10px 34px 20px;
+  }
+
+  .project-card,
+  .certificate-card {
+    min-width: 220px;
+    max-width: 220px;
+    flex: 0 0 220px;
+  }
+
+  .project-card {
+    min-height: 430px;
+  }
+
+  .certificate-card {
+    min-height: 335px;
+  }
+
+}
