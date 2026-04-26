@@ -34,7 +34,6 @@
     0 0 48px rgba(177, 178, 228, 0.2),
     inset 0 0 0 1px rgba(255, 255, 255, 0.8);
   overflow: hidden;
-  backdrop-filter: blur(12px);
   transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
@@ -108,7 +107,6 @@
   color: var(--primary);
   font-size: 0.85rem;
   font-weight: 700;
-  backdrop-filter: blur(14px);
   box-shadow: 0 12px 32px rgba(105, 49, 103, 0.14);
   z-index: 3;
 }

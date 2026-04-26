@@ -22,8 +22,7 @@
   height: 420px;
   right: -120px;
   top: 30px;
-  background: radial-gradient(circle, rgba(177, 178, 228, 0.35), transparent 65%);
-  filter: blur(40px);
+  background: radial-gradient(circle, rgba(177, 178, 228, 0.22), transparent 65%);
   z-index: -1;
 }
 
@@ -146,21 +145,24 @@
 
   background:
     radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.95) 0 34%, rgba(235, 238, 248, 0.48) 35% 52%, transparent 53%),
-    conic-gradient(from 140deg, rgba(105, 49, 103, 0.18), rgba(177, 178, 228, 0.4), rgba(255, 231, 255, 0.42), rgba(105, 49, 103, 0.18));
+    conic-gradient(from 140deg, rgba(105, 49, 103, 0.16), rgba(177, 178, 228, 0.34), rgba(255, 231, 255, 0.36), rgba(105, 49, 103, 0.16));
 
-  backdrop-filter: blur(10px);
   perspective: 900px;
   box-shadow:
-    0 38px 90px rgba(105, 49, 103, 0.16),
+    0 30px 70px rgba(105, 49, 103, 0.14),
     inset 0 0 0 1px rgba(255, 255, 255, 0.7);
   overflow: hidden;
-  animation: heroGlowPulse 5.5s ease-in-out infinite;
   cursor: grab;
   touch-action: none;
 }
 
 .hero-card:active {
   cursor: grabbing;
+}
+
+.home.is-paused .hero-card,
+.home.is-paused .hero-card * {
+  animation-play-state: paused;
 }
 
 .hero-card::before {
@@ -184,11 +186,9 @@
   right: -42px;
   top: 24px;
   border-radius: 50%;
-  background: rgba(255, 231, 255, 0.42);
-  filter: blur(36px);
+  background: radial-gradient(circle, rgba(255, 231, 255, 0.36), transparent 68%);
   pointer-events: none;
   z-index: 0;
-  animation: lightSweep 5.5s ease-in-out infinite;
 }
 
 .dev-symbol-3d {
@@ -236,14 +236,12 @@
     radial-gradient(circle at 80% 82%, rgba(255, 231, 255, 0.58), transparent 48%);
   border: 1px solid rgba(105, 49, 103, 0.12);
   box-shadow:
-    0 34px 70px rgba(105, 49, 103, 0.24),
+    0 26px 56px rgba(105, 49, 103, 0.2),
     0 12px 24px rgba(177, 178, 228, 0.18),
     inset 0 1px 0 rgba(255, 255, 255, 0.9);
 
   transform-style: preserve-3d;
-  animation:
-    codeSpin3d 7s ease-in-out infinite,
-    surfaceLight 5.5s ease-in-out infinite;
+  animation: codeSpin3d 8s ease-in-out infinite;
 }
 
 .code-mark::selection,
@@ -292,7 +290,6 @@
     0 14px 30px rgba(105, 49, 103, 0.25);
 
   transform: translateZ(44px);
-  animation: symbolGlow 5.5s ease-in-out infinite;
 }
 
 .code-orbit {

@@ -5,6 +5,8 @@ const sections = document.querySelectorAll("section[id]");
 const navLinks = document.querySelectorAll(".navbar a");
 
 let clickedSection = null;
+let activeLinkTicking = false;
+let sectionPositions = [];
 
 function setActiveLink(id) {
   navLinks.forEach((link) => {
@@ -29,13 +31,31 @@ function updateActiveLinkOnScroll() {
   const activationPoint = window.scrollY + window.innerHeight * 0.42;
   let current = "home";
 
-  sections.forEach((section) => {
-    if (activationPoint >= section.offsetTop) {
-      current = section.getAttribute("id");
+  sectionPositions.forEach((section) => {
+    if (activationPoint >= section.top) {
+      current = section.id;
     }
   });
 
   setActiveLink(current);
+}
+
+function updateSectionPositions() {
+  sectionPositions = Array.from(sections).map((section) => ({
+    id: section.getAttribute("id"),
+    top: section.offsetTop
+  }));
+}
+
+function requestActiveLinkUpdate() {
+  if (activeLinkTicking) return;
+
+  activeLinkTicking = true;
+
+  requestAnimationFrame(() => {
+    updateActiveLinkOnScroll();
+    activeLinkTicking = false;
+  });
 }
 
 navLinks.forEach((link) => {
@@ -52,9 +72,17 @@ navLinks.forEach((link) => {
   });
 });
 
+updateSectionPositions();
 setActiveLink(window.location.hash.replace("#", "") || "home");
-window.addEventListener("scroll", updateActiveLinkOnScroll);
-window.addEventListener("resize", updateActiveLinkOnScroll);
+window.addEventListener("scroll", requestActiveLinkUpdate, { passive: true });
+window.addEventListener("resize", () => {
+  updateSectionPositions();
+  requestActiveLinkUpdate();
+});
+window.addEventListener("load", () => {
+  updateSectionPositions();
+  requestActiveLinkUpdate();
+});
 
 /* ============================= */
 /* HOME 3D INTERATIVO */
@@ -75,6 +103,7 @@ if (heroCard && devSymbol) {
   let isPressing = false;
   let settleTimeout = null;
   let isReturningHome = false;
+  let heroAnimationFrame = null;
   let returnStartTime = 0;
   let returnFromX = 0;
   let returnFromY = 0;
@@ -100,9 +129,28 @@ if (heroCard && devSymbol) {
     velocityX = 0;
     velocityY = 0;
     velocityZ = 0;
+    scheduleHeroTransform();
+  }
+
+  function hasHeroMotion() {
+    return (
+      isPressing ||
+      isReturningHome ||
+      Math.abs(velocityX) > 0.01 ||
+      Math.abs(velocityY) > 0.01 ||
+      Math.abs(velocityZ) > 0.01
+    );
+  }
+
+  function scheduleHeroTransform() {
+    if (heroAnimationFrame !== null) return;
+
+    heroAnimationFrame = requestAnimationFrame(applyHeroTransform);
   }
 
   function applyHeroTransform() {
+    heroAnimationFrame = null;
+
     if (isReturningHome) {
       const progress = Math.min((performance.now() - returnStartTime) / returnDuration, 1);
       const easedProgress = easeInOutCubic(progress);
@@ -125,13 +173,21 @@ if (heroCard && devSymbol) {
       velocityX *= 0.94;
       velocityY *= 0.94;
       velocityZ *= 0.95;
+
+      if (!hasHeroMotion()) {
+        velocityX = 0;
+        velocityY = 0;
+        velocityZ = 0;
+      }
     }
 
     devSymbol.style.setProperty("--tilt-x", `${tiltX}deg`);
     devSymbol.style.setProperty("--tilt-y", `${tiltY}deg`);
     devSymbol.style.setProperty("--spin-z", `${spinZ}deg`);
 
-    requestAnimationFrame(applyHeroTransform);
+    if (hasHeroMotion()) {
+      scheduleHeroTransform();
+    }
   }
 
   function updateLight(event) {
@@ -152,6 +208,7 @@ if (heroCard && devSymbol) {
     lastX = event.clientX;
     lastY = event.clientY;
     updateLight(event);
+    scheduleHeroTransform();
   });
 
   heroCard.addEventListener("pointermove", (event) => {
@@ -171,6 +228,7 @@ if (heroCard && devSymbol) {
     lastX = event.clientX;
     lastY = event.clientY;
     updateLight(event);
+    scheduleHeroTransform();
   });
 
   heroCard.addEventListener("pointerdown", (event) => {
@@ -186,6 +244,7 @@ if (heroCard && devSymbol) {
     velocityY -= x * 8;
     velocityZ += x * 5;
     updateLight(event);
+    scheduleHeroTransform();
   });
 
   heroCard.addEventListener("pointerup", (event) => {
@@ -205,9 +264,22 @@ if (heroCard && devSymbol) {
   heroCard.addEventListener("dblclick", () => {
     isReturningHome = false;
     velocityZ += 8;
+    scheduleHeroTransform();
+  });
+}
+
+const homeSection = document.querySelector("#home");
+
+if (homeSection) {
+  const homePerformanceObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      homeSection.classList.toggle("is-paused", !entry.isIntersecting);
+    });
+  }, {
+    rootMargin: "120px 0px 120px 0px"
   });
 
-  applyHeroTransform();
+  homePerformanceObserver.observe(homeSection);
 }
 
 /* ============================= */
@@ -221,8 +293,7 @@ const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
       entry.target.classList.add("show");
-    } else {
-      entry.target.classList.remove("show");
+      observer.unobserve(entry.target);
     }
   });
 }, {

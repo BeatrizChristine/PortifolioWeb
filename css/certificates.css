@@ -62,7 +62,6 @@
   gap: 24px;
   margin-bottom: 0;
   transition: transform 0.45s ease;
-  will-change: transform;
 }
 
 .certificate-card {
@@ -82,23 +81,15 @@
   box-shadow: 0 15px 40px rgba(105, 49, 103, 0.08);
 
   text-align: left;
-  animation: certificateFloat 5.5s ease-in-out infinite;
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
               box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1),
               border-color 0.45s ease;
   transform-origin: center;
-  will-change: transform;
+  content-visibility: auto;
+  contain-intrinsic-size: 285px 315px;
 }
 
-.certificate-card:nth-child(2) { animation-delay: 0.35s; }
-.certificate-card:nth-child(3) { animation-delay: 0.7s; }
-.certificate-card:nth-child(4) { animation-delay: 1.05s; }
-.certificate-card:nth-child(5) { animation-delay: 1.4s; }
-.certificate-card:nth-child(6) { animation-delay: 1.75s; }
-.certificate-card:nth-child(7) { animation-delay: 2.1s; }
-
 .certificate-card:hover {
-  animation: none;
   transform: translateY(-7px) scale(1.02);
   border-color: rgba(105, 49, 103, 0.22);
   box-shadow: 0 24px 55px rgba(105, 49, 103, 0.14);

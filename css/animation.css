@@ -28,36 +28,19 @@
 .hidden {
   opacity: 0;
   transform: translateY(18px);
-  filter: blur(2px);
   transition:
     opacity 0.7s ease,
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-    filter 0.7s ease;
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .show {
   opacity: 1;
   transform: translateY(0);
-  filter: blur(0);
 }
 
 /* ============================= */
 /* ANIMAÇÃO FLUTUANTE */
 /* ============================= */
-@keyframes softFloatCard {
-  0% {
-    transform: translateY(0) scale(1);
-  }
-
-  50% {
-    transform: translateY(-6px) scale(1);
-  }
-
-  100% {
-    transform: translateY(0) scale(1);
-  }
-}
-
 @keyframes devSceneFloat {
   0% {
     --float-y: 0px;
@@ -75,46 +58,6 @@
   }
 }
 
-@keyframes heroGlowPulse {
-  0% {
-    box-shadow:
-      0 34px 82px rgba(105, 49, 103, 0.14),
-      0 0 0 rgba(177, 178, 228, 0),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.65);
-  }
-
-  50% {
-    box-shadow:
-      0 48px 105px rgba(105, 49, 103, 0.23),
-      0 0 42px rgba(177, 178, 228, 0.34),
-      inset 0 0 34px rgba(255, 255, 255, 0.46);
-  }
-
-  100% {
-    box-shadow:
-      0 34px 82px rgba(105, 49, 103, 0.14),
-      0 0 0 rgba(177, 178, 228, 0),
-      inset 0 0 0 1px rgba(255, 255, 255, 0.65);
-  }
-}
-
-@keyframes lightSweep {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.55;
-  }
-
-  50% {
-    transform: translate3d(-34px, 28px, 0) scale(1.25);
-    opacity: 0.9;
-  }
-
-  100% {
-    transform: translate3d(0, 0, 0) scale(1);
-    opacity: 0.55;
-  }
-}
-
 @keyframes innerGlowPulse {
   0% {
     opacity: 0.65;
@@ -129,27 +72,6 @@
   }
 }
 
-@keyframes symbolGlow {
-  0% {
-    text-shadow:
-      0 4px 0 rgba(177, 178, 228, 0.48),
-      0 14px 30px rgba(105, 49, 103, 0.22);
-  }
-
-  50% {
-    text-shadow:
-      0 5px 0 rgba(177, 178, 228, 0.7),
-      0 18px 38px rgba(105, 49, 103, 0.34),
-      0 0 24px rgba(255, 231, 255, 0.85);
-  }
-
-  100% {
-    text-shadow:
-      0 4px 0 rgba(177, 178, 228, 0.48),
-      0 14px 30px rgba(105, 49, 103, 0.22);
-  }
-}
-
 @keyframes codeSpin3d {
   0% {
     transform: rotateX(10deg) rotateY(-18deg) translateZ(0);
@@ -161,38 +83,6 @@
 
   100% {
     transform: rotateX(10deg) rotateY(-18deg) translateZ(0);
-  }
-}
-
-@keyframes surfaceLight {
-  0% {
-    --light-x: 24%;
-    --light-y: 18%;
-    box-shadow:
-      0 30px 64px rgba(105, 49, 103, 0.2),
-      0 10px 20px rgba(177, 178, 228, 0.14),
-      inset 16px 16px 34px rgba(255, 255, 255, 0.75),
-      inset -18px -18px 34px rgba(105, 49, 103, 0.08);
-  }
-
-  50% {
-    --light-x: 66%;
-    --light-y: 28%;
-    box-shadow:
-      0 42px 82px rgba(105, 49, 103, 0.3),
-      0 0 34px rgba(255, 231, 255, 0.42),
-      inset 20px 20px 42px rgba(255, 255, 255, 0.9),
-      inset -22px -18px 40px rgba(105, 49, 103, 0.12);
-  }
-
-  100% {
-    --light-x: 24%;
-    --light-y: 18%;
-    box-shadow:
-      0 30px 64px rgba(105, 49, 103, 0.2),
-      0 10px 20px rgba(177, 178, 228, 0.14),
-      inset 16px 16px 34px rgba(255, 255, 255, 0.75),
-      inset -18px -18px 34px rgba(105, 49, 103, 0.08);
   }
 }
 
@@ -251,16 +141,13 @@
 }
 
 
-@keyframes certificateFloat {
-  0% {
-    transform: translateY(0);
-  }
-
-  50% {
-    transform: translateY(-5px);
-  }
-
-  100% {
-    transform: translateY(0);
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
