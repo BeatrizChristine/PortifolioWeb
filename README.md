@@ -4,18 +4,10 @@ Portfolio pessoal desenvolvido para apresentar minha trajetoria, habilidades, pr
 
 ## Preview
 
-O projeto e um site estatico feito com HTML, CSS e JavaScript.
-
-Quando publicado no GitHub Pages, o link ficara neste formato:
+O projeto é um site feito com HTML, CSS e JavaScript.
 
 ```text
-https://BeatrizChristine.github.io/NOME-DO-REPOSITORIO/
-```
-
-Se o repositorio se chamar `BeatrizChristine.github.io`, o site ficara em:
-
-```text
-https://BeatrizChristine.github.io/
+https://BeatrizChristine.github.io/PortifolioWeb/
 ```
 
 ## Tecnologias
@@ -27,7 +19,7 @@ https://BeatrizChristine.github.io/
 
 ## Funcionalidades
 
-- Secao inicial com apresentacao
+- Seção inicial com apresentação
 - Sobre mim
 - Carrossel de projetos
 - Habilidades tecnicas
@@ -59,22 +51,7 @@ PortifolioWeb/
 1. Baixe ou clone este repositorio.
 2. Abra o arquivo `index.html` no navegador.
 
-Tambem e possivel usar a extensao Live Server no VS Code para visualizar o site com recarregamento automatico.
-
-## Como Publicar no GitHub Pages
-
-1. Crie um repositorio no GitHub.
-2. Envie os arquivos do projeto para o repositorio.
-3. No GitHub, acesse `Settings`.
-4. Va em `Pages`.
-5. Em `Build and deployment`, selecione:
-   - `Source`: Deploy from a branch
-   - `Branch`: main
-   - Pasta: `/root`
-6. Clique em `Save`.
-
-Depois de alguns minutos, o GitHub mostrara o link publico do site.
-
+Também é possível usar a extensão Live Server no VS Code para visualizar o site com recarregamento automático.
 ## Contato
 
 - GitHub: [BeatrizChristine](https://github.com/BeatrizChristine)
