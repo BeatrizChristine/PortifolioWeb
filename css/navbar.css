@@ -1,0 +1,85 @@
+/* ============================= */
+/* NAVBAR / MENU */
+/* ============================= */
+.navbar {
+  width: 90%;
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 14px 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(177, 178, 228, 0.4);
+  border-radius: 999px;
+
+  backdrop-filter: blur(18px);
+  box-shadow: 0 12px 35px rgba(105, 49, 103, 0.12);
+
+  position: sticky;
+  top: 20px;
+  z-index: 100;
+
+  transition: 0.3s ease;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  font-family: monospace;
+
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar ul {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.navbar a {
+  position: relative;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 600;
+  padding: 8px 10px;
+  transition: 0.3s ease;
+}
+
+.navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+
+  width: 0%;
+  height: 2px;
+
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  transition: 0.3s ease;
+}
+
+.navbar a:hover::after {
+  width: 100%;
+}
+
+.navbar a.active::after {
+  width: 100%;
+}
+
+.navbar a:hover {
+  color: var(--primary);
+}
+
+.navbar:hover {
+  transform: translateY(-2px);
+}

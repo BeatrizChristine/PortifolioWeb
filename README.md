@@ -53,8 +53,16 @@ PortifolioWeb/
 │   └── img/
 │
 ├── css/
+│   ├── about.css
 │   ├── animation.css
+│   ├── base.css
+│   ├── certificates.css
+│   ├── contact.css
+│   ├── home.css
+│   ├── navbar.css
+│   ├── projects.css
 │   ├── responsive.css
+│   ├── skills.css
 │   └── style.css
 │
 ├── js/

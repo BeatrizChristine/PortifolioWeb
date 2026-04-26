@@ -1,0 +1,37 @@
+/* ============================= */
+/* VARIÁVEIS DE CORES */
+/* ============================= */
+:root {
+  --bg: #ffffff;
+  --text: #1c0b1b;
+  --muted: #6b5f6b;
+  --primary: #693167;
+  --secondary: #8e5c8d;
+  --lavender: #b1b2e4;
+  --lavender-light: #ebeef8;
+  --soft-pink: #ffe7ff;
+  --black: #000000;
+}
+
+/* ============================= */
+/* RESET E CONFIGURAÇÕES GERAIS */
+/* ============================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
+
+section {
+  scroll-margin-top: 140px;
+}
