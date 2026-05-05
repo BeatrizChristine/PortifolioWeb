@@ -166,7 +166,12 @@
   .navbar ul {
     flex-wrap: wrap;
     justify-content: center;
-    row-gap: 6px;
+    column-gap: 12px;
+    row-gap: 10px;
+  }
+
+  .navbar a {
+    padding: 9px 10px;
   }
 
   .logo {
@@ -295,7 +300,12 @@
 
   .navbar a {
     font-size: 0.82rem;
-    padding: 7px 6px;
+    padding: 8px 8px;
+  }
+
+  .navbar ul {
+    column-gap: 8px;
+    row-gap: 8px;
   }
 
   .home-text h1 {

@@ -67,18 +67,20 @@
   transition: 0.3s ease;
 }
 
-.navbar a:hover::after {
-  width: 100%;
-}
-
 .navbar a.active::after {
   width: 100%;
 }
 
-.navbar a:hover {
-  color: var(--primary);
-}
-
 .navbar:hover {
   transform: translateY(-2px);
+}
+
+@media (hover: hover) {
+  .navbar a:hover::after {
+    width: 100%;
+  }
+
+  .navbar a:hover {
+    color: var(--primary);
+  }
 }

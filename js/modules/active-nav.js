@@ -4,7 +4,6 @@ function initActiveNav() {
 
   if (sections.length === 0 || navLinks.length === 0) return;
 
-  let clickedSection = null;
   let activeLinkTicking = false;
   let sectionPositions = [];
 
@@ -22,8 +21,6 @@ function initActiveNav() {
   }
 
   function updateActiveLinkOnScroll() {
-    if (clickedSection) return;
-
     const pageBottom =
       window.innerHeight + window.scrollY >= document.body.offsetHeight - 8;
 
@@ -59,13 +56,8 @@ function initActiveNav() {
     link.addEventListener("click", () => {
       const id = link.getAttribute("href").replace("#", "");
 
-      clickedSection = id;
       setActiveLink(id);
-
-      setTimeout(() => {
-        clickedSection = null;
-        updateActiveLinkOnScroll();
-      }, 900);
+      requestActiveLinkUpdate();
     });
   });
 
