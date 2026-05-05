@@ -116,8 +116,26 @@
 /* ============================= */
 @media (max-width: 700px) {
 
+  html,
+  body {
+    overflow-x: hidden;
+    overflow-x: clip;
+    overscroll-behavior-x: none;
+    touch-action: pan-y;
+  }
+
   section {
     scroll-margin-top: 190px;
+  }
+
+  .navbar,
+  .home,
+  .about,
+  .projects,
+  .skills,
+  .certificates,
+  .contact {
+    max-width: calc(100vw - 32px);
   }
 
   .home::before {
@@ -131,6 +149,7 @@
   .projects-wrapper,
   .certificates-wrapper {
     padding: 12px 44px 22px;
+    overflow: hidden;
   }
 
   .projects-viewport,
