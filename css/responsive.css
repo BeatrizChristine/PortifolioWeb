@@ -120,6 +120,14 @@
     scroll-margin-top: 190px;
   }
 
+  .home::before {
+    width: min(320px, 82vw);
+    height: min(320px, 82vw);
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%);
+  }
+
   .projects-wrapper,
   .certificates-wrapper {
     padding: 12px 44px 22px;
