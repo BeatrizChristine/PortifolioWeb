@@ -5,19 +5,11 @@ function initActiveNav() {
   if (sections.length === 0 || navLinks.length === 0) return;
 
   let activeLinkTicking = false;
-  let sectionPositions = [];
 
   function setActiveLink(id) {
     navLinks.forEach((link) => {
       link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
     });
-  }
-
-  function updateSectionPositions() {
-    sectionPositions = Array.from(sections).map((section) => ({
-      id: section.getAttribute("id"),
-      top: section.offsetTop
-    }));
   }
 
   function updateActiveLinkOnScroll() {
@@ -29,11 +21,13 @@ function initActiveNav() {
       return;
     }
 
-    const activationPoint = window.scrollY + window.innerHeight * 0.42;
+    const activationPoint = window.innerHeight * 0.35;
     let current = "home";
 
-    sectionPositions.forEach((section) => {
-      if (activationPoint >= section.top) {
+    sections.forEach((section) => {
+      const rect = section.getBoundingClientRect();
+
+      if (rect.top <= activationPoint) {
         current = section.id;
       }
     });
@@ -56,21 +50,15 @@ function initActiveNav() {
     link.addEventListener("click", () => {
       const id = link.getAttribute("href").replace("#", "");
 
+      link.blur();
       setActiveLink(id);
       requestActiveLinkUpdate();
     });
   });
 
-  updateSectionPositions();
   setActiveLink(window.location.hash.replace("#", "") || "home");
 
   window.addEventListener("scroll", requestActiveLinkUpdate, { passive: true });
-  window.addEventListener("resize", () => {
-    updateSectionPositions();
-    requestActiveLinkUpdate();
-  });
-  window.addEventListener("load", () => {
-    updateSectionPositions();
-    requestActiveLinkUpdate();
-  });
+  window.addEventListener("resize", requestActiveLinkUpdate);
+  window.addEventListener("load", requestActiveLinkUpdate);
 }
