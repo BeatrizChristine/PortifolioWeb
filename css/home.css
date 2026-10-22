@@ -363,6 +363,9 @@
   border-radius: 999px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
 
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: visible;
+  backface-visibility: visible;
   transform-origin: left center;
   transform: rotateZ(40deg) rotateX(-60deg) translateZ(120px) scale(0.9);
 }
@@ -382,8 +385,19 @@
 }
 
 .layer-tag i {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
   font-size: 0.9rem;
   color: var(--accent);
+  transform: translateZ(1px);
+}
+
+.layer-tag > span {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  transform: translateZ(1px);
 }
 
 /* Camada 1: banco de dados */
