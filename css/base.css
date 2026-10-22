@@ -52,7 +52,7 @@
   --accent-2: #8e5c8d;
   --on-accent: #ffffff;
   --gradient: linear-gradient(120deg, #693167 0%, #8e5c8d 50%, #8f90d8 100%);
-  --gradient-btn: linear-gradient(120deg, #693167, #8e5c8d 60%, #9a9be0);
+  --gradient-btn: linear-gradient(120deg, #7a3b78, #965f94 60%, #9a9be0);
   --glow: rgba(105, 49, 103, 0.2);
   --grid-line: rgba(105, 49, 103, 0.06);
   --shadow: 0 24px 60px rgba(105, 49, 103, 0.13);
@@ -141,49 +141,54 @@ ol {
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 100%);
 }
 
+/* Gradiente radial no lugar de filter: blur, que era caro para desenhar */
 .bg-glow {
+  --glow-color: var(--primary);
+
   position: absolute;
   border-radius: 50%;
-  filter: blur(90px);
+  background: radial-gradient(circle, var(--glow-color) 0%, transparent 70%);
   opacity: 0.55;
 }
 
 .glow-one {
-  width: 520px;
-  height: 520px;
-  top: -160px;
-  right: -120px;
-  background: var(--primary);
+  width: 760px;
+  height: 760px;
+  top: -340px;
+  right: -300px;
 }
 
 .glow-two {
-  width: 420px;
-  height: 420px;
-  bottom: -180px;
-  left: -140px;
-  background: #3b3d8f;
+  --glow-color: #3b3d8f;
+
+  width: 640px;
+  height: 640px;
+  bottom: -340px;
+  left: -300px;
   opacity: 0.35;
 }
 
 [data-theme="light"] .glow-one {
-  background: var(--soft-pink);
+  --glow-color: var(--soft-pink);
   opacity: 0.9;
 }
 
 [data-theme="light"] .glow-two {
-  background: var(--lavender);
+  --glow-color: var(--lavender);
   opacity: 0.45;
 }
 
 .bg-spotlight {
   position: absolute;
-  inset: 0;
-  background: radial-gradient(
-    520px circle at var(--spot-x, 50%) var(--spot-y, -20%),
-    var(--glow),
-    transparent 60%
-  );
+  left: -520px;
+  top: -520px;
+  width: 1040px;
+  height: 1040px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--glow), transparent 60%);
   opacity: 0.45;
+  transform: translate3d(50vw, -20vh, 0);
+  will-change: transform;
 }
 
 /* ============================= */
@@ -281,8 +286,6 @@ ol {
   background: var(--surface);
   border: 1px solid var(--border);
   color: var(--text);
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
 }
 
 .secondary-btn:hover {

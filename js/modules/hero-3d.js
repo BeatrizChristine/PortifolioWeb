@@ -106,22 +106,13 @@ function createHeroTilt(heroCard, devSymbol) {
       }
     }
 
-    devSymbol.style.setProperty("--tilt-x", `${tiltX}deg`);
-    devSymbol.style.setProperty("--tilt-y", `${tiltY}deg`);
-    devSymbol.style.setProperty("--spin-z", `${spinZ}deg`);
+    // Transform direto: variaveis CSS aqui recalculariam o estilo de toda a cena a cada quadro
+    devSymbol.style.transform =
+      `rotateX(${tiltX}deg) rotateY(${tiltY}deg) rotateZ(${spinZ}deg)`;
 
     if (hasHeroMotion()) {
       scheduleHeroTransform();
     }
-  }
-
-  function updateLight(event) {
-    const rect = heroCard.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width;
-    const y = (event.clientY - rect.top) / rect.height;
-
-    devSymbol.style.setProperty("--mouse-x", `${x * 100}%`);
-    devSymbol.style.setProperty("--mouse-y", `${y * 100}%`);
   }
 
   heroCard.addEventListener("pointerenter", (event) => {
@@ -131,7 +122,6 @@ function createHeroTilt(heroCard, devSymbol) {
     heroCard.classList.add("is-tilting");
     lastX = event.clientX;
     lastY = event.clientY;
-    updateLight(event);
     scheduleHeroTransform();
   });
 
@@ -151,7 +141,6 @@ function createHeroTilt(heroCard, devSymbol) {
 
     lastX = event.clientX;
     lastY = event.clientY;
-    updateLight(event);
     scheduleHeroTransform();
   });
 
@@ -167,7 +156,6 @@ function createHeroTilt(heroCard, devSymbol) {
     velocityX += y * 8;
     velocityY -= x * 8;
     velocityZ += x * 5;
-    updateLight(event);
     scheduleHeroTransform();
   });
 
@@ -178,8 +166,6 @@ function createHeroTilt(heroCard, devSymbol) {
 
   heroCard.addEventListener("pointerleave", () => {
     settleTimeout = setTimeout(() => {
-      devSymbol.style.setProperty("--mouse-x", "50%");
-      devSymbol.style.setProperty("--mouse-y", "50%");
       startReturnHome();
     }, 180);
   });

@@ -25,8 +25,8 @@ function createBackgroundSpotlight() {
     if (frame !== null) return;
 
     frame = requestAnimationFrame(() => {
-      spotlight.style.setProperty("--spot-x", `${pointerX}px`);
-      spotlight.style.setProperty("--spot-y", `${pointerY}px`);
+      // Move por transform: so recompoe a camada, sem redesenhar o fundo
+      spotlight.style.transform = `translate3d(${pointerX}px, ${pointerY}px, 0)`;
       frame = null;
     });
   }, { passive: true });

@@ -149,6 +149,7 @@
   }
 
   .about-highlights,
+  .ai-card,
   .contact-links {
     text-align: left;
   }
@@ -275,9 +276,11 @@
     display: none;
   }
 
-  .float-hint {
-    display: none;
+  /* Abre espaco a direita para os rotulos das camadas */
+  .dev-symbol-3d {
+    left: -44px;
   }
+
 
   .portrait {
     width: 290px;

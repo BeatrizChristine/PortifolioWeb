@@ -39,8 +39,7 @@
   top: -120px;
   right: -80px;
   border-radius: 50%;
-  background: var(--glow);
-  filter: blur(50px);
+  background: radial-gradient(circle, var(--glow), transparent 70%);
   transition: transform 0.6s ease;
   pointer-events: none;
 }
@@ -140,7 +139,11 @@
   margin-top: 18px;
   padding-top: 16px;
   border-top: 1px dashed var(--border);
-  font-size: 0.86rem;
+}
+
+.degree-note p {
+  margin-bottom: 12px;
+  font-size: 0.88rem;
   color: var(--muted);
 }
 
@@ -232,9 +235,8 @@
   top: -70px;
   right: -60px;
   border-radius: 50%;
-  background: var(--c2);
-  opacity: 0.18;
-  filter: blur(30px);
+  background: radial-gradient(circle, var(--c2), transparent 70%);
+  opacity: 0.22;
 }
 
 .cert-badge {

@@ -22,11 +22,11 @@ Portfólio feito do zero, sem frameworks, com visual de desenvolvedora: tema esc
 
 No site, é possível encontrar:
 
-* Cubo de código em 3D feito em CSS, com logos de tecnologias orbitando e física de arrasto
+* Pilha Full-Stack em 3D (interface, API e banco) com uma requisição animada percorrendo as camadas
 * Apresentação com cargo digitado dinamicamente
-* Sobre mim com foto recortada, destacando desenvolvimento e suporte de TI
+* Sobre mim com foto recortada, destacando desenvolvimento, suporte de TI e uso de IA
 * Experiência atual (IDAM) dividida em Desenvolvimento e Suporte de TI, com linha do tempo
-* 12 projetos, incluindo os sistemas do estágio no IDAM, com filtros e botão "Mostrar mais"
+* 15 projetos, incluindo os sistemas do estágio no IDAM, com filtros e botão "Mostrar mais"
 * Habilidades em um explorador estilo IDE, com pastas que trocam sozinhas
 * Formação acadêmica e certificados em cards que giram
 * Currículo em PDF e contato com botão para copiar o e-mail
@@ -38,7 +38,7 @@ No site, é possível encontrar:
 * HTML5
 * CSS3 (transformações 3D, variáveis, grid e animações)
 * JavaScript puro, organizado em módulos
-* [Devicon](https://devicon.dev/) para os ícones das tecnologias
+* [Devicon](https://devicon.dev/) para os ícones das tecnologias, reduzido só aos ícones usados (`css/devicon.css` e `assets/fonts/devicon-subset.woff2`)
 * Google Fonts: Inter, Space Grotesk e JetBrains Mono
 
 ---
@@ -51,13 +51,14 @@ PortifolioWeb/
 ├── assets/
 │   ├── docs/          # currículo em PDF
 │   ├── icons/
+│   ├── fonts/         # fonte de ícones reduzida
 │   └── img/           # foto de perfil recortada e imagens do site
 │
 ├── css/
-│   ├── style.css      # importa fontes e os demais arquivos
 │   ├── base.css       # variáveis dos temas e componentes compartilhados
+│   ├── devicon.css    # ícones das tecnologias (versão reduzida)
 │   ├── navbar.css
-│   ├── home.css       # cena 3D e faixa de tecnologias
+│   ├── home.css       # hero e pilha Full-Stack em 3D
 │   ├── about.css
 │   ├── experience.css
 │   ├── projects.css

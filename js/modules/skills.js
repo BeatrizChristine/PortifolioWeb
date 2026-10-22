@@ -4,7 +4,7 @@ const SKILL_GROUPS = [
     id: "linguagens",
     items: [
       { name: "Java", devicon: "devicon-java-plain colored", brand: "#f89820", note: "Back-end, Android e desktop" },
-      { name: "Python", devicon: "devicon-python-plain colored", brand: "#3776ab", note: "APIs com Flask" },
+      { name: "Python", devicon: "devicon-python-plain colored", brand: "#3776ab", note: "Flask, FastAPI e automações" },
       { name: "C", devicon: "devicon-c-plain colored", brand: "#7f9cc9", note: "Fundamentos de computação" },
       { name: "JavaScript", devicon: "devicon-javascript-plain colored", brand: "#f0c419", note: "Interatividade na web" },
       { name: "TypeScript", devicon: "devicon-typescript-plain colored", brand: "#3178c6", note: "React e Next.js" },
@@ -28,7 +28,8 @@ const SKILL_GROUPS = [
       { name: "Java 17", devicon: "devicon-java-plain colored", brand: "#f89820", note: "Base das APIs" },
       { name: "Spring Boot", devicon: "devicon-spring-plain colored", brand: "#6db33f", note: "APIs REST no IDAM" },
       { name: "Spring Security", devicon: "devicon-spring-plain colored", brand: "#6db33f", note: "Autenticação e acesso" },
-      { name: "Flask", devicon: "devicon-flask-original", mono: true, brand: "#b3a5b8", note: "APIs em Python" },
+      { name: "Flask", devicon: "devicon-flask-original", mono: true, brand: "#b3a5b8", note: "Conexis e WhatsApp Monitor" },
+      { name: "FastAPI", devicon: "devicon-fastapi-plain colored", brand: "#05998b", note: "MonitoraDOE-AM" },
       { name: "APIs REST", svg: "server", brand: "#d48ad1", note: "Integração entre sistemas" }
     ]
   },
@@ -53,9 +54,9 @@ const SKILL_GROUPS = [
   {
     id: "integracoes",
     items: [
-      { name: "Evolution API", svg: "message", brand: "#25d366", note: "Atendimento digital" },
+      { name: "Evolution API", svg: "message", brand: "#25d366", note: "WhatsApp corporativo" },
       { name: "Webhooks", svg: "link", brand: "#c77dff", note: "Eventos entre sistemas" },
-      { name: "Socket.IO", devicon: "devicon-socketio-original", mono: true, brand: "#b3a5b8", note: "Comunicação em tempo real" },
+      { name: "Socket.IO", devicon: "devicon-socketio-original", mono: true, brand: "#b3a5b8", note: "Tempo real no Conexis" },
       { name: "JWT", svg: "key", brand: "#fb5b8b", note: "Tokens de acesso" },
       { name: "AD / LDAP", svg: "users", brand: "#3b9cff", note: "Login corporativo" }
     ]
@@ -65,7 +66,8 @@ const SKILL_GROUPS = [
     items: [
       { name: "Power BI", svg: "chart", brand: "#f2c811", note: "Dashboards e indicadores" },
       { name: "Excel", svg: "table", brand: "#21a366", note: "Planilhas e relatórios" },
-      { name: "n8n", svg: "workflow", brand: "#ea4b71", note: "Automações e agentes de IA" }
+      { name: "n8n", svg: "workflow", brand: "#ea4b71", note: "Automações e agentes de IA" },
+      { name: "IA generativa", svg: "sparkles", brand: "#c77dff", note: "Código, estudo e novas ideias" }
     ]
   },
   {

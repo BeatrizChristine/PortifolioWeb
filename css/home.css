@@ -36,8 +36,6 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 999px;
-  -webkit-backdrop-filter: blur(8px);
-  backdrop-filter: blur(8px);
 }
 
 .home-hello {
@@ -167,9 +165,9 @@
 }
 
 .hero-card {
-  --layer-w: 250px;
-  --layer-h: 176px;
-  --gap: 78px;
+  --layer-w: 256px;
+  --layer-h: 186px;
+  --gap: 88px;
   --stack-scale: 1;
 
   position: relative;
@@ -203,37 +201,25 @@
   inset: 40px;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 50% 50%, var(--glow), transparent 62%);
-  filter: blur(10px);
+    radial-gradient(circle at 50% 50%, var(--glow), transparent 66%);
   z-index: 0;
 }
 
 .dev-symbol-3d {
-  --float-y: 0px;
-  --base-tilt-x: 0deg;
-  --tilt-x: 0deg;
-  --tilt-y: 0deg;
-  --spin-z: 0deg;
-  --mouse-x: 50%;
-  --mouse-y: 50%;
-
   position: relative;
   width: 360px;
   height: 360px;
 
   transform-style: preserve-3d;
-  transform:
-    translateY(var(--float-y))
-    rotateX(calc(var(--base-tilt-x) + var(--tilt-x)))
-    rotateY(var(--tilt-y))
-    rotateZ(var(--spin-z));
-  animation: devSceneFloat 6s ease-in-out infinite;
   z-index: 1;
 }
 
-/* Pilha Full-Stack: tres camadas (banco, API e interface) em vista isometrica */
+/* Pilha Full-Stack: tres camadas de vidro (banco, API e interface) em vista isometrica.
+   Em loop, uma requisicao desce da interface ate o banco e a resposta volta. */
 .stack {
   --spread: 1;
+  --cycle: 6.4s;
+  --cycle-delay: 1.4s;
 
   position: absolute;
   left: 50%;
@@ -245,22 +231,33 @@
   transform-style: preserve-3d;
   transform: scale(var(--stack-scale)) rotateX(60deg) rotateZ(-40deg) translateZ(calc(var(--gap) * -1));
   animation: stackIdle 10s ease-in-out infinite;
-  transition: --spread 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 /* Passar o mouse ou arrastar abre a pilha como uma vista explodida */
 .hero-card:hover .stack,
 .hero-card.is-tilting .stack {
-  --spread: 1.45;
+  --spread: 1.35;
 }
 
 .stack-shadow {
   position: absolute;
-  inset: 6%;
-  border-radius: 40px;
-  background: radial-gradient(ellipse, rgba(105, 49, 103, 0.55), transparent 70%);
-  filter: blur(20px);
+  inset: -4%;
+  border-radius: 50%;
+  background: radial-gradient(ellipse, rgba(105, 49, 103, 0.45), transparent 68%);
   transform: translateZ(-46px);
+}
+
+/* Anel tracejado girando sob a pilha */
+.stack-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 380px;
+  height: 380px;
+  margin: -190px 0 0 -190px;
+  border-radius: 50%;
+  border: 1.5px dashed color-mix(in srgb, var(--accent) 45%, transparent);
+  animation: stackRing 40s linear infinite;
 }
 
 .layer {
@@ -268,10 +265,17 @@
 
   position: absolute;
   inset: 0;
-  padding: 16px 18px;
+  padding: 14px 16px;
   border-radius: 22px;
   transform-style: preserve-3d;
   transform: translateZ(calc(var(--n) * var(--gap) * var(--spread)));
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Montagem: as camadas caem uma a uma quando o site abre */
+.home-img.show .layer {
+  animation: layerDrop 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.15) both;
+  animation-delay: calc(0.15s + var(--n) * 0.22s);
 }
 
 /* Espessura da camada: uma copia mais escura logo atras */
@@ -281,14 +285,67 @@
   inset: 0;
   border-radius: inherit;
   background: var(--edge);
-  transform: translateZ(-8px);
+  opacity: 0.55;
+  transform: translateZ(-7px);
 }
 
+/* Onda de luz quando a requisicao passa pela camada */
+.layer-pulse {
+  position: absolute;
+  inset: -2px;
+  border-radius: 24px;
+  border: 2px solid #f3c4f1;
+  box-shadow: 0 0 26px rgba(212, 138, 209, 0.75), inset 0 0 26px rgba(212, 138, 209, 0.45);
+  opacity: 0;
+  pointer-events: none;
+  animation: var(--stage) var(--cycle) ease-out var(--cycle-delay) infinite;
+}
+
+.pulse-ui,
+.tag-ui {
+  --stage: stageUi;
+}
+
+.pulse-api,
+.tag-api {
+  --stage: stageApi;
+}
+
+.pulse-db,
+.tag-db,
+.db-row.is-hit {
+  --stage: stageDb;
+}
+
+/* Traco que liga a camada ao rotulo, deitado no plano da camada */
+.layer-link {
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  width: 46px;
+  border-top: 1.5px dashed var(--border-strong);
+}
+
+.layer-link::before {
+  content: "";
+  position: absolute;
+  left: -4px;
+  top: -4.5px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+/* Rotulo de pe na ponta do traco: desfaz a inclinacao da pilha e fica
+   a frente das camadas de cima */
 .layer-tag {
   position: absolute;
-  right: calc(100% + 14px);
+  left: calc(100% + 46px);
   top: 50%;
   margin-top: -13px;
+  isolation: isolate;
 
   display: inline-flex;
   align-items: center;
@@ -305,6 +362,23 @@
   border: 1px solid var(--border-strong);
   border-radius: 999px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.18);
+
+  transform-origin: left center;
+  transform: rotateZ(40deg) rotateX(-60deg) translateZ(120px) scale(0.9);
+}
+
+/* Destaque do rotulo no momento em que a camada esta ativa */
+.layer-tag::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  background: color-mix(in srgb, var(--accent) 26%, var(--surface-strong));
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 18px var(--glow);
+  opacity: 0;
+  animation: var(--stage) var(--cycle) ease-out var(--cycle-delay) infinite;
 }
 
 .layer-tag i {
@@ -317,18 +391,19 @@
   --edge: #2e1030;
 
   color: #ffffff;
-  background: linear-gradient(135deg, #693167 0%, #8e5c8d 55%, #a7a8e0 100%);
+  background: linear-gradient(135deg, rgba(105, 49, 103, 0.94) 0%, rgba(142, 92, 141, 0.9) 55%, rgba(167, 168, 224, 0.88) 100%);
   border: 1px solid rgba(255, 255, 255, 0.35);
-  box-shadow: 0 0 46px rgba(212, 138, 209, 0.35);
+  box-shadow: 0 0 46px rgba(212, 138, 209, 0.3);
 }
 
 .db-table {
   display: grid;
   gap: 7px;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 
 .db-row {
+  position: relative;
   display: grid;
   grid-template-columns: 28px 1fr auto;
   align-items: center;
@@ -348,6 +423,19 @@
   opacity: 0.75;
 }
 
+/* Linha consultada acende quando a requisicao chega ao banco */
+.db-row.is-hit::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1.5px solid #ffe7ff;
+  background: rgba(255, 231, 255, 0.22);
+  box-shadow: 0 0 16px rgba(255, 231, 255, 0.6);
+  opacity: 0;
+  animation: var(--stage) var(--cycle) ease-out var(--cycle-delay) infinite;
+}
+
 .db-row b {
   padding: 1px 8px;
   border-radius: 999px;
@@ -364,21 +452,26 @@
   background: rgba(234, 179, 8, 0.28);
 }
 
-/* Camada 2: API em Java com o terminal embaixo */
+/* Camada 2: API em Java */
 .layer-api {
   --edge: #07030a;
 
   color: #e9dff0;
-  background: rgba(20, 9, 28, 0.94);
+  background: rgba(20, 9, 28, 0.88);
   border: 1px solid rgba(212, 138, 209, 0.5);
-  box-shadow: 0 0 40px rgba(212, 138, 209, 0.28);
+  box-shadow: 0 0 40px rgba(212, 138, 209, 0.25);
 }
 
 .layer-bar {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
+}
+
+.layer-bar .window-dots i {
+  width: 8px;
+  height: 8px;
 }
 
 .layer-file {
@@ -389,27 +482,37 @@
 
 .api-code {
   display: grid;
-  gap: 4px;
+  gap: 3px;
   font-family: var(--font-mono);
-  font-size: 0.74rem;
+  font-size: 0.66rem;
+  line-height: 1.35;
 }
 
 .code-line {
   display: block;
   white-space: nowrap;
-  overflow: hidden;
-  animation: typeLine 8s steps(28, end) infinite;
-  animation-delay: calc(var(--l) * 0.5s);
 }
 
 .code-line.is-indent {
   padding-left: 16px;
 }
 
-.code-line:not(.is-term) + .is-term {
-  margin-top: 8px;
-  padding-top: 8px;
+/* Linha do terminal: mostra a chamada e, na volta, a resposta */
+.code-line.is-term {
+  position: relative;
+  margin-top: 6px;
+  padding-top: 7px;
   border-top: 1px dashed rgba(177, 178, 228, 0.2);
+}
+
+.term-res {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgb(20, 9, 28);
+  opacity: 0;
+  animation: showResponse var(--cycle) ease-out var(--cycle-delay) infinite;
 }
 
 /* Camada 3: interface */
@@ -418,10 +521,10 @@
 
   color: #1c0b1b;
   background:
-    radial-gradient(circle at var(--mouse-x) var(--mouse-y), rgba(255, 231, 255, 0.95), transparent 55%),
-    rgba(255, 255, 255, 0.93);
-  border: 1px solid rgba(105, 49, 103, 0.22);
-  box-shadow: 0 0 40px rgba(177, 178, 228, 0.4);
+    radial-gradient(circle at 30% 20%, rgba(255, 231, 255, 0.85), transparent 55%),
+    rgba(255, 255, 255, 0.74);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: inset 0 0 0 1px rgba(105, 49, 103, 0.12), 0 0 40px rgba(177, 178, 228, 0.35);
 }
 
 .ui-top {
@@ -488,6 +591,12 @@
 .ui-chart i:nth-child(4) { animation-delay: 0.9s; }
 .ui-chart i:nth-child(5) { animation-delay: 1.2s; }
 
+.ui-bottom {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .ui-button {
   display: inline-block;
   padding: 5px 16px;
@@ -498,39 +607,54 @@
   background: var(--gradient-btn);
 }
 
-/* Feixes verticais com pacotes de dados subindo do banco ate a interface */
-.data-beam {
+/* Aviso que aparece quando a resposta chega a interface */
+.ui-toast {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #15803d;
+  background: rgba(34, 197, 94, 0.18);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  opacity: 0;
+  animation: showToast var(--cycle) ease-out var(--cycle-delay) infinite;
+}
+
+/* Feixe vertical no centro da pilha, do banco ate a interface */
+.stack-beam {
   position: absolute;
+  left: 50%;
+  top: 50%;
   width: 2px;
-  height: calc(var(--gap) * 2 * var(--spread));
+  height: calc(var(--gap) * 2);
+  margin-left: -1px;
   transform-origin: top center;
-  transform: rotateX(90deg);
-  background: linear-gradient(to bottom, rgba(212, 138, 209, 0.15), rgba(212, 138, 209, 0.8));
+  transform: rotateX(90deg) scaleY(var(--spread));
+  background: linear-gradient(to bottom, rgba(212, 138, 209, 0.2), rgba(212, 138, 209, 0.85));
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.beam-one {
-  left: -14px;
-  top: 42px;
-}
-
-.beam-two {
-  left: calc(100% + 12px);
-  top: calc(100% - 52px);
-}
-
-.data-beam i {
+/* Pacote da requisicao: anda no eixo Z e contra-gira para ficar de frente */
+.stack-packet {
   position: absolute;
-  left: -4px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ffffff;
-  box-shadow: 0 0 6px #ffffff, 0 0 18px #d48ad1;
-  animation: packetUp 2.6s ease-in infinite;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  animation: packetTrip var(--cycle) cubic-bezier(0.45, 0, 0.55, 1) var(--cycle-delay) infinite;
 }
 
-.beam-two i {
-  animation-delay: 1.3s;
+.stack-packet i {
+  position: absolute;
+  left: -8px;
+  top: -8px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffffff, #ffe7ff 40%, #d48ad1);
+  box-shadow: 0 0 10px #ffffff, 0 0 26px #d48ad1, 0 0 48px rgba(212, 138, 209, 0.6);
 }
 
 /* Cartoes flutuantes em volta da cena */
@@ -542,8 +666,8 @@
 }
 
 .float-status {
-  top: 26px;
-  left: 0;
+  top: 4px;
+  left: -12px;
 
   display: inline-flex;
   align-items: center;
@@ -552,36 +676,10 @@
 
   font-size: 0.8rem;
   color: var(--text);
-  background: var(--nav-bg);
+  background: var(--surface-strong);
   border: 1px solid var(--border);
   border-radius: 999px;
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
   animation: floatY 6s ease-in-out infinite 1.2s;
-}
-
-.float-hint {
-  right: 6px;
-  bottom: 8px;
-
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 14px;
-
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  color: var(--muted);
-  background: var(--nav-bg);
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  box-shadow: none;
-  animation: floatY 6s ease-in-out infinite 0.6s;
-}
-
-.hint-icon {
-  color: var(--accent);
-  font-size: 0.95rem;
 }
 
 .float-status b {
