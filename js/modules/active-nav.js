@@ -1,6 +1,6 @@
 function initActiveNav() {
   const sections = document.querySelectorAll("section[id]");
-  const navLinks = document.querySelectorAll(".navbar a");
+  const navLinks = document.querySelectorAll(".nav-menu a");
 
   if (sections.length === 0 || navLinks.length === 0) return;
 

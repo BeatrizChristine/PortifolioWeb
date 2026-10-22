@@ -1,177 +1,208 @@
 /* ============================= */
-/* SOBRE MIM PREMIUM */
+/* SOBRE MIM */
 /* ============================= */
 .about {
   width: 90%;
   max-width: 1100px;
-  margin: 90px auto;
+  margin: 120px auto;
 
-  display: flex;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
   align-items: center;
-  gap: 60px;
+  gap: 70px;
 }
 
 .about-img {
-  flex: 0.8;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   position: relative;
+  justify-self: center;
 }
 
-.about-photo-card {
+/* Foto recortada saindo de um arco com a cor da marca */
+.portrait {
   position: relative;
-  width: 285px;
-  height: 350px;
-  padding: 12px;
-  border-radius: 32px;
+  width: 370px;
+  height: 450px;
+  isolation: isolate;
+}
 
-  background: rgba(255, 255, 255, 0.94);
-  border: 1px solid rgba(105, 49, 103, 0.1);
-  box-shadow:
-    0 34px 80px rgba(105, 49, 103, 0.2),
-    0 16px 34px rgba(28, 11, 27, 0.08),
-    0 0 48px rgba(177, 178, 228, 0.2),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+.portrait-arch {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 80%;
+  border-radius: 185px 185px 36px 36px;
   overflow: hidden;
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  background: linear-gradient(160deg, #d48ad1 0%, #693167 55%, #2a1030 100%);
+  box-shadow: var(--shadow), 0 0 80px var(--glow);
 }
 
-.about-photo-card::before {
+[data-theme="light"] .portrait-arch {
+  background: linear-gradient(160deg, #ffe7ff 0%, #b1b2e4 50%, #8e5c8d 100%);
+}
+
+.portrait-arch::before {
   content: "";
   position: absolute;
-  width: 180px;
-  height: 180px;
-  right: -58px;
-  top: -58px;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.08) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.portrait-arch::after {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 50%;
+  left: 15%;
+  top: -10%;
   border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(255, 231, 255, 0.65), transparent 68%);
-  filter: blur(12px);
-  opacity: 0.85;
-  z-index: 0;
+  background: radial-gradient(circle, rgba(255, 231, 255, 0.45), transparent 70%);
 }
 
-.about-photo-card::after {
-  content: "";
+.portrait-ring {
   position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-  height: 42%;
-  border-radius: 0 0 24px 24px;
-  background: linear-gradient(
-    to top,
-    rgba(28, 11, 27, 0.24),
-    transparent
-  );
-  pointer-events: none;
-  z-index: 2;
+  z-index: -1;
+  width: 118%;
+  aspect-ratio: 1;
+  left: -9%;
+  top: -2%;
+  border-radius: 50%;
+  border: 1.5px dashed var(--border-strong);
+  animation: borderSpin 50s linear infinite;
 }
 
-.about-photo-card img {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  border-radius: 24px;
-  display: block;
-  border: 0;
-  box-shadow: 0 12px 26px rgba(105, 49, 103, 0.1);
+.portrait-photo {
+  position: absolute;
+  inset: 0;
   z-index: 1;
-  transition: transform 0.4s ease, filter 0.4s ease;
+  overflow: hidden;
+  border-radius: 0 0 36px 36px;
 }
 
-.about-photo-card:hover {
-  transform: translateY(-4px);
-  box-shadow:
-    0 44px 95px rgba(105, 49, 103, 0.26),
-    0 20px 42px rgba(28, 11, 27, 0.1),
-    0 0 62px rgba(255, 231, 255, 0.28),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+.portrait-photo img {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 108%;
+  height: auto;
+  transform: translateX(-50%);
+  display: block;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.35));
 }
 
-.about-photo-card:hover img {
-  transform: scale(1.02);
-  filter: saturate(1.04) contrast(1.02);
-}
+.photo-badge {
+  position: absolute;
+  z-index: 2;
 
-.about-status {
-  position: relative;
-  margin-top: -24px;
-  padding: 10px 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 14px;
+
+  font-size: 0.8rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--text);
+
+  background: var(--nav-bg);
+  border: 1px solid var(--border);
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(105, 49, 103, 0.1);
-  color: var(--primary);
-  font-size: 0.85rem;
-  font-weight: 700;
-  box-shadow: 0 12px 32px rgba(105, 49, 103, 0.14);
-  z-index: 3;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow);
+}
+
+.photo-badge .icon {
+  color: var(--accent);
+}
+
+.badge-location {
+  top: 70px;
+  left: -40px;
+  animation: floatY 6s ease-in-out infinite;
+}
+
+.badge-dev {
+  top: 44%;
+  right: -44px;
+  animation: floatY 7s ease-in-out infinite 0.8s;
+}
+
+.badge-support {
+  bottom: 46px;
+  left: -34px;
+  animation: floatY 6.5s ease-in-out infinite 1.6s;
 }
 
 .about-text {
-  flex: 1.2;
-}
-
-.section-badge {
-  display: inline-block;
-  margin-bottom: 14px;
-  padding: 7px 13px;
-  border-radius: 999px;
-
-  background: rgba(235, 238, 248, 0.9);
-  color: var(--primary);
-  font-size: 0.8rem;
-  font-weight: 700;
+  min-width: 0;
 }
 
 .about-text h2 {
-  font-size: 2rem;
-  line-height: 1.15;
-  margin-bottom: 18px;
-  color: var(--primary);
-  max-width: 650px;
+  margin-bottom: 20px;
 }
 
-.about-text p {
+.about-text > p {
   color: var(--muted);
-  margin-bottom: 12px;
-  max-width: 680px;
-  line-height: 1.55;
-  font-size: 0.98rem;
+  margin-bottom: 14px;
+  line-height: 1.75;
+}
+
+.about-text strong {
+  color: var(--text);
 }
 
 .about-highlights {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-top: 22px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 26px;
 }
 
 .highlight-card {
-  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 16px;
   border-radius: 18px;
-  background: #fff;
-  border: 1px solid rgba(105, 49, 103, 0.1);
-  box-shadow: 0 8px 25px rgba(105, 49, 103, 0.07);
-  transition: 0.3s ease;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .highlight-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 14px 35px rgba(105, 49, 103, 0.12);
+  transform: translateY(-4px);
+  border-color: var(--border-strong);
+}
+
+.highlight-icon {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  border-radius: 13px;
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 13%, transparent);
+  border: 1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+}
+
+.highlight-icon .icon {
+  width: 20px;
+  height: 20px;
 }
 
 .highlight-card h3 {
-  color: var(--primary);
+  font-family: var(--font-display);
   font-size: 0.98rem;
-  margin-bottom: 8px;
+  line-height: 1.3;
 }
 
 .highlight-card p {
-  font-size: 0.82rem;
-  margin: 0;
-  line-height: 1.4;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--muted);
 }

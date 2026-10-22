@@ -1,7 +1,4 @@
-/* ============================= */
-/* IMPORTACAO DA FONTE */
-/* ============================= */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+/* As fontes sao carregadas por <link> no index.html para nao atrasar este arquivo */
 
 /* ============================= */
 /* ARQUIVOS BASE */
@@ -10,6 +7,7 @@
 @import url("navbar.css");
 @import url("home.css");
 @import url("about.css");
+@import url("experience.css");
 @import url("projects.css");
 @import url("skills.css");
 @import url("certificates.css");

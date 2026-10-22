@@ -1,98 +1,179 @@
 /* ============================= */
-/* CONTATO PREMIUM */
+/* CONTATO */
 /* ============================= */
 .contact {
   width: 90%;
-  max-width: 900px;
-  margin: 120px auto 60px;
-  padding: 70px 30px;
-  text-align: center;
+  max-width: 1100px;
+  margin: 120px auto 90px;
 
-  background: linear-gradient(135deg, #ebeef8, #ffe7ff);
-  border-radius: 30px;
-
-  box-shadow: 0 20px 60px rgba(105, 49, 103, 0.15);
-
-  position: relative;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 60px;
 }
 
-.contact::before {
-  content: "";
-  position: absolute;
-  width: 500px;
-  height: 500px;
-  background: radial-gradient(circle, rgba(142,92,141,0.12), transparent 68%);
-  top: -200px;
-  left: -200px;
-  opacity: 0.7;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.contact h2,
-.contact p,
-.contact-links {
-  position: relative;
-  z-index: 1;
-}
-
-.contact h2 {
-  font-size: 2.2rem;
-  margin-bottom: 12px;
-  color: var(--primary);
-}
-
-.contact p {
+.contact-intro > p {
+  max-width: 460px;
+  margin-top: 16px;
   color: var(--muted);
-  margin-bottom: 35px;
-  font-size: 1rem;
 }
 
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 100%;
+  margin-top: 28px;
+  padding: 8px 8px 8px 20px;
+
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+
+  background: var(--code-bg);
+  border: 1px solid rgba(177, 178, 228, 0.16);
+  border-radius: 999px;
+  color: #e9dff0;
+  box-shadow: var(--shadow);
+}
+
+.contact-email a {
+  margin-right: 10px;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.contact-email a:hover {
+  color: #d48ad1;
+}
+
+.copy-email {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: #e9dff0;
+  border: 1px solid rgba(177, 178, 228, 0.2);
+  background: rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.copy-email:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.copy-email .icon-check,
+.copy-email.is-copied .icon-copy {
+  display: none;
+}
+
+.copy-email.is-copied .icon-check {
+  display: block;
+  color: #86efac;
+}
+
+/* Linhas de contato com a cor de cada marca */
 .contact-links {
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.contact-item {
+.contact-row {
+  --row-color: var(--accent);
+
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
+  padding: 14px 20px 14px 14px;
 
   text-decoration: none;
-  padding: 12px 20px;
-  border-radius: 999px;
+  color: var(--text);
 
-  background: white;
-  border: 1px solid rgba(105, 49, 103, 0.15);
-
-  color: var(--primary);
-  font-weight: 600;
-
-  transition: 0.3s ease;
-  box-shadow: 0 5px 15px rgba(105, 49, 103, 0.08);
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.contact-item img {
-  width: 18px;
-  height: 18px;
-  transition: 0.3s;
-  filter: invert(23%) sepia(18%) saturate(1200%) hue-rotate(260deg);
+.contact-row.is-linkedin {
+  --row-color: #0a66c2;
 }
 
-.contact-item:hover {
-  background: var(--primary);
-  color: white;
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 10px 25px rgba(105, 49, 103, 0.2);
+.contact-row.is-github {
+  --row-color: #24292f;
 }
 
-.contact-item:hover img {
-  filter: brightness(0) invert(1);
+/* No tema escuro o cinza do GitHub some no fundo, entao usa o roxo do Octocat */
+:root:not([data-theme="light"]) .contact-row.is-github {
+  --row-color: #6e5494;
 }
 
-.contact-item:active {
-  transform: scale(0.97);
+.contact-row.is-cv {
+  --row-color: #8e5c8d;
+}
+
+.contact-icon {
+  display: grid;
+  place-items: center;
+  width: 50px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 16px;
+  color: #ffffff;
+  background: var(--row-color);
+  box-shadow: 0 10px 22px color-mix(in srgb, var(--row-color) 35%, transparent);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.contact-row.is-mail .contact-icon {
+  background: var(--gradient-btn);
+}
+
+.contact-icon .icon {
+  width: 22px;
+  height: 22px;
+}
+
+.contact-label {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.contact-label strong {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+}
+
+.contact-label span {
+  font-size: 0.84rem;
+  color: var(--muted);
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.contact-arrow {
+  margin-left: auto;
+  color: var(--muted);
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.contact-row:hover {
+  transform: translateX(6px);
+  border-color: color-mix(in srgb, var(--row-color) 55%, transparent);
+  box-shadow: 0 14px 34px color-mix(in srgb, var(--row-color) 22%, transparent);
+}
+
+.contact-row:hover .contact-icon {
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.contact-row:hover .contact-arrow {
+  transform: translateX(4px);
+  color: var(--text);
 }

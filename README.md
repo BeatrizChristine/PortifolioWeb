@@ -18,27 +18,28 @@ https://BeatrizChristine.github.io/PortifolioWeb/
 
 ## Sobre o Projeto
 
-O portfólio foi criado com foco em uma experiência simples, responsiva e objetiva. A proposta é facilitar a visualização do meu perfil profissional, destacando minha evolução na área de tecnologia e os projetos que venho desenvolvendo.
+Portfólio feito do zero, sem frameworks, com visual de desenvolvedora: tema escuro em roxo, lavanda e rosa (com alternância para o tema claro) e uma cena 3D interativa no início.
 
 No site, é possível encontrar:
 
-* Uma apresentação inicial com área de atuação
-* Informações sobre minha formação e interesses
-* Projetos com links para repositórios no GitHub
-* Habilidades em desenvolvimento, dados, banco de dados e ferramentas
-* Certificados e formações complementares
-* Currículo em PDF para download
-* Links para GitHub, LinkedIn e e-mail
+* Cubo de código em 3D feito em CSS, com logos de tecnologias orbitando e física de arrasto
+* Apresentação com cargo digitado dinamicamente
+* Sobre mim com foto recortada, destacando desenvolvimento e suporte de TI
+* Experiência atual (IDAM) dividida em Desenvolvimento e Suporte de TI, com linha do tempo
+* 12 projetos, incluindo os sistemas do estágio no IDAM, com filtros e botão "Mostrar mais"
+* Habilidades em um explorador estilo IDE, com pastas que trocam sozinhas
+* Formação acadêmica e certificados em cards que giram
+* Currículo em PDF e contato com botão para copiar o e-mail
 
 ---
 
 ## Tecnologias Utilizadas
 
 * HTML5
-* CSS3
-* JavaScript
-* Responsividade com CSS
-* Organização de assets locais (imagens, ícones e documentos)
+* CSS3 (transformações 3D, variáveis, grid e animações)
+* JavaScript puro, organizado em módulos
+* [Devicon](https://devicon.dev/) para os ícones das tecnologias
+* Google Fonts: Inter, Space Grotesk e JetBrains Mono
 
 ---
 
@@ -48,24 +49,37 @@ No site, é possível encontrar:
 PortifolioWeb/
 │
 ├── assets/
-│   ├── docs/
+│   ├── docs/          # currículo em PDF
 │   ├── icons/
-│   └── img/
+│   └── img/           # foto de perfil recortada e imagens do site
 │
 ├── css/
-│   ├── about.css
-│   ├── animation.css
-│   ├── base.css
-│   ├── certificates.css
-│   ├── contact.css
-│   ├── home.css
+│   ├── style.css      # importa fontes e os demais arquivos
+│   ├── base.css       # variáveis dos temas e componentes compartilhados
 │   ├── navbar.css
+│   ├── home.css       # cena 3D e faixa de tecnologias
+│   ├── about.css
+│   ├── experience.css
 │   ├── projects.css
-│   ├── responsive.css
 │   ├── skills.css
-│   └── style.css
+│   ├── certificates.css # formação e certificados
+│   ├── contact.css
+│   ├── animation.css
+│   └── responsive.css
 │
 ├── js/
+│   ├── modules/
+│   │   ├── theme.js           # tema claro/escuro
+│   │   ├── navbar.js          # menu mobile
+│   │   ├── active-nav.js      # link ativo conforme a rolagem
+│   │   ├── hero-3d.js         # arrastar e girar a cena 3D
+│   │   ├── typed-role.js      # efeito de digitação
+│   │   ├── skills.js          # dados e explorador das habilidades
+│   │   ├── reveal.js          # animações de entrada
+│   │   ├── project-filter.js  # filtros dos projetos
+│   │   ├── certificates.js    # virar os cards no toque
+│   │   ├── pointer-effects.js # inclinação dos cards e luz do cursor
+│   │   └── contact.js         # copiar e-mail
 │   └── script.js
 │
 ├── index.html

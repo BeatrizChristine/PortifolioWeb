@@ -1,6 +1,8 @@
 function initRevealAnimations() {
   const hiddenElements = document.querySelectorAll(
-    ".home-text, .home-img, .about-img, .about-text, .project-card, .skills, .certificates, .contact"
+    ".home-text, .home-img, .about-img, .about-text, .section-header, .project-filters, " +
+    ".job-card, .timeline-item, .project-card, .skills-ide, .degree-card, .certs-header, .cert-card, " +
+    ".contact-intro, .contact-row"
   );
 
   if (hiddenElements.length === 0) return;
@@ -18,6 +20,11 @@ function initRevealAnimations() {
   });
 
   hiddenElements.forEach((element) => {
+    // Cards irmaos entram em cascata
+    const siblings = Array.from(element.parentElement.children);
+    const position = siblings.indexOf(element);
+
+    element.style.setProperty("--reveal-delay", `${Math.min(position, 5) * 0.07}s`);
     element.classList.add("hidden");
     observer.observe(element);
   });

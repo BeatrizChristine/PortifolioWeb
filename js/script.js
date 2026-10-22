@@ -1,4 +1,11 @@
+initTheme();
+initNavbar();
 initActiveNav();
 initHero3d();
+initTypedRole();
+initSkills();
 initRevealAnimations();
-initCarousels();
+initProjectFilter();
+initCertificates();
+initPointerEffects();
+initContact();

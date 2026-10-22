@@ -4,115 +4,184 @@
 /* ============================= */
 @media (max-width: 1100px) {
 
+  .navbar,
   .home,
   .about,
+  .experience,
   .projects,
   .skills,
-  .certificates {
+  .education,
+  .contact,
+  .footer {
     width: 92%;
   }
 
-  .home {
-    gap: 36px;
+  .navbar .nav-menu a {
+    padding: 8px 9px;
+    font-size: 0.86rem;
   }
 
-  .about {
-    gap: 42px;
+  .hero-card {
+    --stack-scale: 0.9;
+
+    width: 400px;
+    height: 400px;
   }
 
-  .home-text h1 {
-    font-size: 2.8rem;
+  .dev-symbol-3d {
+    width: 330px;
+    height: 330px;
   }
 
-  .about-text h2 {
-    font-size: 1.85rem;
+  .badge-dev {
+    right: -24px;
+  }
+
+  .certs-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
 }
 
 /* ============================= */
 /* TABLET */
-/* Empilha as secoes principais e centraliza textos */
+/* Empilha as secoes principais e troca o menu por hamburguer */
 /* ============================= */
-@media (max-width: 900px) {
+@media (max-width: 960px) {
+
+  section {
+    scroll-margin-top: 90px;
+  }
 
   .navbar {
-    width: 92%;
+    padding: 8px 8px 8px 20px;
+  }
+
+  .menu-toggle {
+    display: inline-flex;
+  }
+
+  .nav-menu {
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    right: 0;
+
+    display: none;
+    padding: 10px;
+
+    background: var(--nav-bg);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    -webkit-backdrop-filter: blur(18px) saturate(140%);
+    backdrop-filter: blur(18px) saturate(140%);
+    box-shadow: var(--shadow);
+  }
+
+  .navbar.menu-open .nav-menu {
+    display: block;
+    animation: menuDrop 0.25s ease both;
   }
 
   .navbar ul {
-    gap: 4px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 2px;
   }
 
-  .navbar a {
-    font-size: 0.88rem;
-    padding: 8px 7px;
+  .navbar .nav-menu a {
+    padding: 12px 16px;
+    font-size: 1rem;
+    border-radius: 14px;
+  }
+
+  .navbar .nav-menu a.active::before {
+    left: auto;
+    right: 16px;
+    top: 50%;
+    bottom: auto;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-50%);
   }
 
   .home {
-    flex-direction: column;
+    grid-template-columns: minmax(0, 1fr);
     min-height: auto;
-    margin-top: 34px;
+    padding: 50px 0 110px;
     text-align: center;
+    gap: 40px;
   }
 
-  .home-text p {
+  .home-description {
     margin-left: auto;
     margin-right: auto;
   }
 
-  .home-tags,
   .buttons {
     justify-content: center;
   }
 
-  .hero-card {
-    width: 320px;
-    height: 320px;
+  .home-focus {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
   }
 
-  .dev-symbol-3d {
-    width: 255px;
-    height: 255px;
+  .about,
+  .contact {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 60px;
   }
 
-  .code-mark {
-    width: 190px;
-    height: 148px;
+  .about,
+  .experience,
+  .projects,
+  .skills,
+  .education,
+  .contact {
+    margin: 100px auto;
   }
 
-  .code-mark span {
-    font-size: 4.35rem;
-  }
-
-  .about {
-    flex-direction: column;
+  .about-text,
+  .contact-intro {
     text-align: center;
   }
 
-  .about-text p {
+  .about-highlights,
+  .contact-links {
+    text-align: left;
+  }
+
+  .contact-intro > p {
     margin-left: auto;
     margin-right: auto;
   }
 
-  .about-highlights {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+  .experience-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 
-  .projects-wrapper,
-  .certificates-wrapper {
-    padding: 15px 50px 25px;
-  }
-
-  .skills-grid {
+  .projects-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .ide-body {
+    grid-template-columns: 200px minmax(0, 1fr);
   }
 
 }
 
+@keyframes menuDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+}
+
 /* ============================= */
 /* TABLET PEQUENO / CELULAR GRANDE */
-/* Reduz carrosseis para caber melhor com as setas */
+/* Uma coluna e cena 3D menor */
 /* ============================= */
 @media (max-width: 700px) {
 
@@ -121,261 +190,330 @@
     overflow-x: hidden;
     overflow-x: clip;
     overscroll-behavior-x: none;
-    touch-action: pan-y;
-  }
-
-  section {
-    scroll-margin-top: 190px;
   }
 
   .navbar,
   .home,
   .about,
+  .experience,
   .projects,
   .skills,
-  .certificates,
+  .education,
+  .contact,
+  .footer {
+    width: auto;
+    max-width: none;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .navbar {
+    top: 12px;
+    margin-top: 12px;
+  }
+
+  .home {
+    padding-bottom: 96px;
+  }
+
+  .about,
+  .experience,
+  .projects,
+  .skills,
+  .education,
   .contact {
-    max-width: calc(100vw - 32px);
+    margin-top: 80px;
+    margin-bottom: 80px;
   }
 
-  .home::before {
-    width: min(320px, 82vw);
-    height: min(320px, 82vw);
-    left: 50%;
-    right: auto;
-    transform: translateX(-50%);
+  .section-header {
+    margin-bottom: 28px;
   }
 
-  .projects-wrapper,
-  .certificates-wrapper {
-    padding: 12px 44px 22px;
-    overflow: hidden;
+  .home-focus {
+    grid-template-columns: minmax(0, 1fr);
+    max-width: 340px;
   }
 
-  .projects-viewport,
-  .certificates-viewport {
-    padding: 24px 14px 30px;
-    border-radius: 28px;
+  .home-focus li {
+    flex-direction: row;
+    align-items: center;
   }
 
-  .project-card,
-  .certificate-card {
-    min-width: 255px;
-    max-width: 255px;
-    flex: 0 0 255px;
+  /* Filtros viram uma fileira com rolagem lateral */
+  .project-filters {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow-x: auto;
+    margin: 0 -16px 24px;
+    padding: 2px 16px 6px;
+    scrollbar-width: none;
   }
 
-  .arrow {
-    width: 40px;
-    height: 40px;
+  .project-filters::-webkit-scrollbar {
+    display: none;
   }
 
-  .arrow img {
-    width: 17px;
-    height: 17px;
+  .filter-btn {
+    flex-shrink: 0;
+  }
+
+  .hero-card {
+    --stack-scale: 0.74;
+
+    width: 320px;
+    height: 320px;
+    touch-action: pan-y;
+  }
+
+  .dev-symbol-3d {
+    width: 270px;
+    height: 270px;
+  }
+
+  .float-status {
+    display: none;
+  }
+
+  .float-hint {
+    display: none;
+  }
+
+  .portrait {
+    width: 290px;
+    height: 360px;
+  }
+
+  .portrait-arch {
+    border-radius: 145px 145px 30px 30px;
+  }
+
+  .portrait-photo {
+    border-radius: 0 0 30px 30px;
+  }
+
+  .badge-location {
+    left: -14px;
+  }
+
+  .badge-dev {
+    right: -14px;
+  }
+
+  .badge-support {
+    left: -10px;
+  }
+
+  .about-highlights,
+  .job-columns,
+  .projects-grid,
+  .education-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .job-card {
+    padding: 22px 18px;
+  }
+
+  /* Em uma coluna cada card fica com a propria altura */
+  .projects-grid {
+    grid-auto-rows: auto;
+  }
+
+  .job-header {
+    align-items: flex-start;
+  }
+
+  /* Explorador vira uma fileira de pastas com rolagem lateral */
+  .ide-body {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .ide-explorer {
+    padding: 12px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .explorer-title {
+    display: none;
+  }
+
+  .explorer-list {
+    flex-direction: row;
+    gap: 6px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .explorer-list::-webkit-scrollbar {
+    display: none;
+  }
+
+  .explorer-item {
+    width: auto;
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  .ide-panel {
+    padding: 18px 16px 20px;
+  }
+
+  .skill-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .certs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .cert-card {
+    height: 210px;
+  }
+
+  .cert-face {
+    padding: 14px;
+    border-radius: 18px;
+  }
+
+  .cert-badge {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+  }
+
+  .cert-badge .icon {
+    width: 21px;
+    height: 21px;
+  }
+
+  .cert-type {
+    font-size: 0.64rem;
+  }
+
+  .cert-front h4 {
+    font-size: 0.9rem;
+  }
+
+  .cert-front p {
+    font-size: 0.74rem;
+  }
+
+  .cert-back {
+    gap: 8px;
+  }
+
+  .cert-back p {
+    font-size: 0.76rem;
+    line-height: 1.45;
+  }
+
+  .cert-back .tag-list {
+    display: none;
+  }
+
+  .cert-link {
+    padding: 6px 11px;
+    font-size: 0.72rem;
+  }
+
+  .certs-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .degree-card {
+    padding: 22px;
+  }
+
+  .contact-email {
+    font-size: 0.8rem;
+    padding-left: 14px;
+  }
+
+  .footer {
+    flex-direction: column;
+    text-align: center;
   }
 
 }
 
 /* ============================= */
 /* MOBILE */
-/* Prioriza leitura, toque e empilhamento em uma coluna */
 /* ============================= */
-@media (max-width: 600px) {
-
-  .navbar {
-    flex-direction: column;
-    gap: 10px;
-    padding: 14px;
-    border-radius: 26px;
-  }
-
-  .navbar ul {
-    flex-wrap: wrap;
-    justify-content: center;
-    column-gap: 12px;
-    row-gap: 10px;
-  }
-
-  .navbar a {
-    padding: 9px 10px;
-  }
+@media (max-width: 420px) {
 
   .logo {
-    font-size: 1.35rem;
-  }
-
-  .home {
-    gap: 32px;
-    margin-bottom: 70px;
-  }
-
-  .home-text h1 {
-    font-size: 2rem;
-    letter-spacing: 0;
-  }
-
-  .home-text h3 {
     font-size: 1.05rem;
   }
 
-  .home-text p {
-    font-size: 0.95rem;
+  .home {
+    padding-top: 36px;
   }
 
-  .hero-card {
-    width: 265px;
-    height: 265px;
+  .home-badge {
+    font-size: 0.74rem;
   }
 
-  .dev-symbol-3d {
-    width: 215px;
-    height: 215px;
+  .home-role {
+    font-size: 1rem;
   }
 
-  .code-mark {
-    width: 158px;
-    height: 124px;
-    border-radius: 26px;
-  }
-
-  .code-mark span {
-    font-size: 3.45rem;
-  }
-
-  .about {
-    margin: 70px auto;
-    gap: 36px;
-  }
-
-  .about-photo-card {
-    width: 230px;
-    height: 285px;
-  }
-
-  .about-photo-card img {
-    border-radius: 22px;
-  }
-
-  .about-text h2,
-  .projects h2,
-  .skills h2,
-  .certificates h2,
-  .contact h2 {
-    font-size: 1.65rem;
-  }
-
-  .about-highlights,
-  .skills-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .projects {
-    margin-bottom: 80px;
-  }
-
-  .projects-wrapper,
-  .certificates-wrapper {
-    padding: 12px 40px 22px;
-  }
-
-  .project-card,
-  .certificate-card {
-    min-width: 245px;
-    max-width: 245px;
-    flex: 0 0 245px;
-  }
-
-  .project-card img {
-    height: 170px;
-  }
-
-  .certificate-card-link {
-    margin-top: 4px;
-  }
-
-  .certificates {
-    margin: 80px auto;
-  }
-
-  .certificates-header {
-    margin-bottom: 24px;
-  }
-
-  .contact {
-    margin-top: 80px;
-    padding: 44px 20px;
-    border-radius: 24px;
-  }
-
-  .contact-links {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .contact-item {
+  .buttons .btn {
+    width: 100%;
     justify-content: center;
   }
 
-}
-
-/* ============================= */
-/* MOBILE ESTREITO */
-/* Ultimos ajustes para telas pequenas */
-/* ============================= */
-@media (max-width: 380px) {
-
-  .navbar a {
-    font-size: 0.82rem;
-    padding: 8px 8px;
-  }
-
-  .navbar ul {
-    column-gap: 8px;
-    row-gap: 8px;
-  }
-
-  .home-text h1 {
-    font-size: 1.75rem;
-  }
-
   .hero-card {
-    width: 230px;
-    height: 230px;
+    --stack-scale: 0.64;
+
+    width: 280px;
+    height: 280px;
   }
 
   .dev-symbol-3d {
-    width: 190px;
-    height: 190px;
+    width: 236px;
+    height: 236px;
   }
 
-  .code-mark {
-    width: 138px;
-    height: 108px;
+  .portrait {
+    width: 260px;
+    height: 325px;
   }
 
-  .code-mark span {
-    font-size: 3rem;
+  .photo-badge {
+    font-size: 0.72rem;
+    padding: 7px 11px;
   }
 
-  .projects-wrapper,
-  .certificates-wrapper {
-    padding: 10px 34px 20px;
+  .cert-card {
+    height: 200px;
   }
 
-  .project-card,
-  .certificate-card {
-    min-width: 220px;
-    max-width: 220px;
-    flex: 0 0 220px;
+  .home-text h1 {
+    font-size: 2.6rem;
   }
 
-  .project-card {
-    min-height: 430px;
+  .degree-card h3 {
+    font-size: 1.25rem;
   }
 
-  .certificate-card {
-    min-height: 335px;
+  .skill-tile {
+    padding: 14px 10px 12px;
+  }
+
+  .tile-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.8rem;
+  }
+
+  .contact-email .role-prompt {
+    display: none;
   }
 
 }

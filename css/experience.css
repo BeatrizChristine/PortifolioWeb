@@ -1,0 +1,233 @@
+/* ============================= */
+/* EXPERIENCIA E TRAJETORIA */
+/* ============================= */
+.experience {
+  width: 90%;
+  max-width: 1100px;
+  margin: 120px auto;
+}
+
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 0.85fr;
+  align-items: start;
+  gap: 28px;
+}
+
+.job-card {
+  position: relative;
+  padding: 28px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 45%),
+    var(--surface);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.job-card::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  background: var(--gradient);
+}
+
+.job-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-bottom: 22px;
+}
+
+.job-logo {
+  display: grid;
+  place-items: center;
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 18px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  color: #ffffff;
+  background: var(--gradient-btn);
+  box-shadow: 0 10px 26px var(--glow);
+}
+
+.job-period {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--accent);
+}
+
+.job-header h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  line-height: 1.25;
+}
+
+.job-company {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+/* Duas frentes do estagio lado a lado */
+.job-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin-bottom: 22px;
+}
+
+.job-column {
+  padding: 18px;
+  border-radius: 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s ease;
+}
+
+.job-column:hover {
+  border-color: var(--border-strong);
+}
+
+.job-column h4 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+}
+
+.job-column h4 .icon {
+  width: 32px;
+  height: 32px;
+  padding: 7px;
+  border-radius: 10px;
+  color: #ffffff;
+  background: var(--gradient-btn);
+}
+
+.job-column li {
+  position: relative;
+  padding-left: 16px;
+  margin-bottom: 8px;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.job-column li:last-child {
+  margin-bottom: 0;
+}
+
+.job-column li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.job-projects {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+  font-size: 0.84rem;
+}
+
+.job-projects span {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--muted);
+}
+
+.job-projects a {
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.job-projects a:hover {
+  color: #ffffff;
+  background: var(--gradient-btn);
+}
+
+/* Linha do tempo */
+.timeline {
+  position: relative;
+  padding: 4px 0 0 30px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--accent), var(--accent-2), transparent);
+  opacity: 0.6;
+}
+
+.timeline-item {
+  position: relative;
+  padding-bottom: 18px;
+}
+
+.timeline-item:last-child {
+  padding-bottom: 0;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -29px;
+  top: 4px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg);
+  border: 2px solid var(--accent);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.timeline-item:hover::before,
+.timeline-item.is-current::before {
+  background: var(--accent);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+}
+
+.timeline-item h3 {
+  font-family: var(--font-display);
+  font-size: 0.96rem;
+  line-height: 1.35;
+}
+
+.timeline-item p {
+  font-size: 0.8rem;
+  line-height: 1.45;
+  color: var(--muted);
+}

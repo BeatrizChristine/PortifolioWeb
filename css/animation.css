@@ -1,19 +1,13 @@
-@property --light-x {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 24%;
-}
-
-@property --light-y {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: 18%;
-}
-
 @property --float-y {
   syntax: "<length>";
   inherits: false;
   initial-value: 0px;
+}
+
+@property --spread {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 1;
 }
 
 @property --base-tilt-x {
@@ -25,21 +19,25 @@
 /* ============================= */
 /* ANIMACOES DE ENTRADA */
 /* ============================= */
+/* Usa "translate" para nao sobrescrever o "transform" proprio dos cards */
 .hidden {
   opacity: 0;
-  transform: translateY(18px);
+  translate: 0 24px;
   transition:
-    opacity 0.7s ease,
-    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    opacity 0.8s ease var(--reveal-delay, 0s),
+    translate 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0s),
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .show {
   opacity: 1;
-  transform: translateY(0);
+  translate: 0 0;
 }
 
 /* ============================= */
-/* ANIMAÇÃO FLUTUANTE */
+/* CENA 3D DO HOME */
 /* ============================= */
 @keyframes devSceneFloat {
   0% {
@@ -48,8 +46,8 @@
   }
 
   50% {
-    --float-y: -12px;
-    --base-tilt-x: 5deg;
+    --float-y: -14px;
+    --base-tilt-x: 6deg;
   }
 
   100% {
@@ -58,88 +56,136 @@
   }
 }
 
-@keyframes innerGlowPulse {
-  0% {
-    opacity: 0.65;
+/* Pilha balancando de leve */
+@keyframes stackIdle {
+  0%,
+  100% {
+    transform: scale(var(--stack-scale)) rotateX(60deg) rotateZ(-40deg) translateZ(calc(var(--gap) * -1));
   }
 
   50% {
+    transform: scale(var(--stack-scale)) rotateX(54deg) rotateZ(-30deg) translateZ(calc(var(--gap) * -1));
+  }
+}
+
+/* Linha de codigo sendo digitada, fica um tempo e some */
+@keyframes typeLine {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  14%,
+  86% {
+    clip-path: inset(0 0 0 0);
+  }
+
+  96%,
+  100% {
+    clip-path: inset(0 100% 0 0);
+  }
+}
+
+@keyframes barPulse {
+  from {
+    transform: scaleY(0.55);
+  }
+
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* Pacote de dados subindo pelo feixe */
+@keyframes packetUp {
+  0% {
+    top: 0;
+    opacity: 0;
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  85% {
     opacity: 1;
   }
 
   100% {
-    opacity: 0.65;
+    top: calc(100% - 10px);
+    opacity: 0;
   }
 }
 
-@keyframes codeSpin3d {
-  0% {
-    transform: rotateX(10deg) rotateY(-18deg) translateZ(0);
+@keyframes floatY {
+  0%,
+  100% {
+    transform: translateY(0);
   }
 
   50% {
-    transform: rotateX(-2deg) rotateY(18deg) translateZ(20px);
-  }
-
-  100% {
-    transform: rotateX(10deg) rotateY(-18deg) translateZ(0);
+    transform: translateY(-12px);
   }
 }
 
-@keyframes surfaceSweep {
-  0% {
-    background-position: 130% 0;
-    opacity: 0.2;
-  }
-
+/* ============================= */
+/* DETALHES DE INTERFACE */
+/* ============================= */
+@keyframes caretBlink {
   50% {
-    background-position: -30% 0;
-    opacity: 0.75;
-  }
-
-  100% {
-    background-position: 130% 0;
-    opacity: 0.2;
+    opacity: 0;
   }
 }
 
-@keyframes orbitOne {
+@keyframes pulseRing {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  100% {
+    transform: scale(2.8);
+    opacity: 0;
+  }
+}
+
+/* Cards de habilidade entrando em cascata */
+@keyframes tileIn {
   from {
-    transform: rotateX(68deg) rotateZ(0deg);
+    opacity: 0;
+    transform: translateY(14px) scale(0.94);
+  }
+}
+
+@keyframes iconWiggle {
+  0%,
+  100% {
+    transform: rotate(0deg) scale(1.12);
+  }
+
+  30% {
+    transform: rotate(-12deg) scale(1.18);
+  }
+
+  60% {
+    transform: rotate(10deg) scale(1.16);
+  }
+}
+
+@keyframes progressFill {
+  from {
+    transform: scaleX(0);
   }
 
   to {
-    transform: rotateX(68deg) rotateZ(360deg);
+    transform: scaleX(1);
   }
 }
 
-@keyframes orbitTwo {
-  from {
-    transform: rotateY(65deg) rotateZ(0deg);
-  }
-
+@keyframes borderSpin {
   to {
-    transform: rotateY(65deg) rotateZ(360deg);
+    transform: rotate(360deg);
   }
 }
-
-@keyframes particleFloat {
-  0% {
-    transform: translate3d(0, 0, 35px) scale(1);
-    opacity: 0.65;
-  }
-
-  50% {
-    transform: translate3d(8px, -12px, 70px) scale(1.2);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate3d(0, 0, 35px) scale(1);
-    opacity: 0.65;
-  }
-}
-
 
 @media (prefers-reduced-motion: reduce) {
   *,
