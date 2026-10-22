@@ -28,8 +28,8 @@ const SKILL_GROUPS = [
       { name: "Java 17", devicon: "devicon-java-plain colored", brand: "#f89820", note: "Base das APIs" },
       { name: "Spring Boot", devicon: "devicon-spring-plain colored", brand: "#6db33f", note: "APIs REST no IDAM" },
       { name: "Spring Security", devicon: "devicon-spring-plain colored", brand: "#6db33f", note: "Autenticação e acesso" },
-      { name: "Flask", devicon: "devicon-flask-original", mono: true, brand: "#b3a5b8", note: "Conexis e WhatsApp Monitor" },
-      { name: "FastAPI", devicon: "devicon-fastapi-plain colored", brand: "#05998b", note: "MonitoraDOE-AM" },
+      { name: "Flask", devicon: "devicon-flask-original", mono: true, brand: "#b3a5b8", note: "APIs web leves em Python" },
+      { name: "FastAPI", devicon: "devicon-fastapi-plain colored", brand: "#05998b", note: "APIs rápidas e assíncronas" },
       { name: "APIs REST", svg: "server", brand: "#d48ad1", note: "Integração entre sistemas" }
     ]
   },
@@ -37,7 +37,7 @@ const SKILL_GROUPS = [
     id: "banco-de-dados",
     items: [
       { name: "PostgreSQL", devicon: "devicon-postgresql-plain colored", brand: "#4169e1", note: "Sistemas institucionais" },
-      { name: "MySQL", devicon: "devicon-mysql-plain colored", brand: "#4479a1", note: "Sistema de lanchonete" },
+      { name: "MySQL", devicon: "devicon-mysql-plain colored", brand: "#4479a1", note: "Modelagem e consultas relacionais" },
       { name: "SQLite", devicon: "devicon-sqlite-plain colored", brand: "#0f80cc", note: "Bancos locais" },
       { name: "Firebase", devicon: "devicon-firebase-plain colored", brand: "#ffca28", note: "Auth e dados nos apps" }
     ]
@@ -54,9 +54,9 @@ const SKILL_GROUPS = [
   {
     id: "integracoes",
     items: [
-      { name: "Evolution API", svg: "message", brand: "#25d366", note: "WhatsApp corporativo" },
+      { name: "Evolution API", svg: "message", brand: "#25d366", note: "Integração com o WhatsApp" },
       { name: "Webhooks", svg: "link", brand: "#c77dff", note: "Eventos entre sistemas" },
-      { name: "Socket.IO", devicon: "devicon-socketio-original", mono: true, brand: "#b3a5b8", note: "Tempo real no Conexis" },
+      { name: "Socket.IO", devicon: "devicon-socketio-original", mono: true, brand: "#b3a5b8", note: "Comunicação em tempo real" },
       { name: "JWT", svg: "key", brand: "#fb5b8b", note: "Tokens de acesso" },
       { name: "AD / LDAP", svg: "users", brand: "#3b9cff", note: "Login corporativo" }
     ]
@@ -103,7 +103,7 @@ const SKILL_GROUPS = [
       { name: "Resolver problemas", svg: "puzzle", brand: "#3ddc84", note: "Foco na solução" },
       { name: "Adaptabilidade", svg: "refresh", brand: "#f58b4c", note: "Novos contextos" },
       { name: "Aprendizado", svg: "book", brand: "#c77dff", note: "Sempre estudando" },
-      { name: "Inglês", svg: "globe", brand: "#60a5fa", note: "Intermediário, leitura técnica" }
+      { name: "Inglês", svg: "globe", brand: "#60a5fa", note: "Intermediário, leitura e conversação" }
     ]
   }
 ];
